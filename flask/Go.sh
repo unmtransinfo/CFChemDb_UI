@@ -12,9 +12,18 @@
 # conda env create -f environment.yml
 # conda activate rdktools
 ###
-source $(dirname $(which conda))/../bin/activate rdktools
+if [ ! "$CONDA_EXE" ]; then
+	CONDA_EXE=$(which conda)
+fi
+if [ ! "$CONDA_EXE" -o ! -e "$CONDA_EXE" ]; then
+	echo "ERROR: conda not found."
+	exit
+fi
+#
+source $(dirname $CONDA_EXE)/../bin/activate rdktools
 export FLASK_APP=depict
 export FLASK_ENV=development
+export APP_SETTINGS=""
 flask run
 conda deactivate
 ###
