@@ -6,14 +6,11 @@ See also:
 * [rdkit-tools](https://github.com/jeremyjyang/rdkit-tools) (repository)
 * [rdktools](https://pypi.org/project/rdktools/) (Pypi package)
 
-RDKit:
-
-* <https://rdkit.org>
-* <https://www.rdkit.org/docs/Install.html>
-
 ## Dependencies
 
-* RDKit Python package (via conda recommended).
+* [Flask](https://flask.palletsprojects.com/)
+* [RDKit](https://www.rdkit.org)
+  * [Installation](https://www.rdkit.org/docs/Install.html) (via conda recommended).
 
 ```
 $ conda create -n rdkit -c conda-forge rdkit ipykernel
@@ -24,3 +21,11 @@ $ conda activate rdkit
 
 See also: [conda/environment.yml](conda/environment.yml)
 
+## Flask
+
+Test app:
+
+```
+cd flask
+./Go.sh
+```
