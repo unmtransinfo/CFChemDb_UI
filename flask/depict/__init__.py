@@ -61,7 +61,12 @@ def create_app(test_config=None):
 
     @app.route('/')
     def home():
-      return 'Depict app (under construction).'
+      return f"""<h2>Depict app (under construction)</h2>
+Try:
+<UL>
+<LI><a href="http://127.0.0.1:5000/mol2img/NCCc1ccc(O)c(O)c1">http://127.0.0.1:5000/mol2img/NCCc1ccc(O)c(O)c1</a>
+</UL>
+"""
 
     @app.route('/mol2img/<smiles>', methods=['GET'])
     def mol2img(smiles):

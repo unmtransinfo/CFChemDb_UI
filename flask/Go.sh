@@ -21,9 +21,13 @@ if [ ! "$CONDA_EXE" -o ! -e "$CONDA_EXE" ]; then
 fi
 #
 source $(dirname $CONDA_EXE)/../bin/activate rdktools
+#
 export FLASK_APP=depict
 export FLASK_ENV=development
-export APP_SETTINGS=""
+export APP_SETTINGS="depict.config.DevelopmentConfig"
+export DATABASE_URL="postgresql://commoner:easement@localhost/cfchemdb"
+#
 flask run
+#
 conda deactivate
 ###
