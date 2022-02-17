@@ -13,19 +13,19 @@ See also:
   * [Installation](https://www.rdkit.org/docs/Install.html) (via conda recommended).
 
 ```
-$ conda create -n rdkit -c conda-forge rdkit ipykernel
-$ conda activate rdkit
-(rdkit) $ conda install -c conda-forge pyvis 
-(rdkit) $ conda install -c conda-forge networkx=2.5 
+$ conda create -n rdktools -c conda-forge rdkit ipykernel
+$ conda activate rdktools
+(rdktools) $ conda install -c conda-forge pyvis 
+(rdktools) $ conda install -c conda-forge networkx=2.5 
 ```
 
-See also: [conda/environment.yml](conda/environment.yml)
+See also: [conda/environment.yml](conda/environment.yml) (Create with `conda env export >environment.yml`.)
 
 ## Flask
 
 Test app:
 
 ```
-cd flask
-./Go.sh
+(cd flask; ./Go.sh)
 ```
+

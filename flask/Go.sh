@@ -22,9 +22,9 @@ fi
 #
 source $(dirname $CONDA_EXE)/../bin/activate rdktools
 #
-export FLASK_APP=depict
+export FLASK_APP=cfchemdb
 export FLASK_ENV=development
-export APP_SETTINGS="depict.config.DevelopmentConfig"
+export APP_SETTINGS="cfchemdb.config.DevelopmentConfig"
 export DATABASE_URL="postgresql://commoner:easement@localhost/cfchemdb"
 #
 flask run

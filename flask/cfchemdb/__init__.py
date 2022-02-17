@@ -2,7 +2,7 @@
 
 import os,io,base64,logging
 
-from flask import Flask,render_template,request
+from flask import Flask,render_template,request,url_for
 #from flask_sqlalchemy import SQLAlchemy
 
 from markupsafe import escape
@@ -48,25 +48,13 @@ def create_app(test_config=None):
       except OSError:
         logging.error(f"Failed to create instance_path: {app.instance_path}")
 
-    # simple hello
-    #@app.route('/hello')
-    #def hello():
-    #    return 'Hello, World!'
-
-    # better hello
-    @app.route('/hello/')
-    @app.route('/hello/<name>')
-    def hello(name=None):
-      return render_template('hello.html', name=name)
-
     @app.route('/')
     def home():
-      return f"""<h2>Depict app (under construction)</h2>
-Try:
-<UL>
-<LI><a href="http://127.0.0.1:5000/mol2img/NCCc1ccc(O)c(O)c1">http://127.0.0.1:5000/mol2img/NCCc1ccc(O)c(O)c1</a>
-</UL>
-"""
+      return render_template('home.html')
+
+    @app.route('/about/')
+    def about():
+      return render_template('about.html')
 
     @app.route('/mol2img/<smiles>', methods=['GET'])
     def mol2img(smiles):
@@ -75,25 +63,28 @@ Try:
       logging.debug(f"request.args.get('kekulize'): {request.args.get('kekulize')}")
       logging.debug(f"request.args.get('width'): {request.args.get('width')}")
       logging.debug(f"request.args.get('height'): {request.args.get('height')}")
-      # show depiction for smiles
+      # Show depiction for SMILES.
       mol = rdkit.Chem.MolFromSmiles(smiles)
       rdkit.Chem.AllChem.Compute2DCoords(mol, clearConfs=True)
       width = int(request.args.get('width')) if request.args.get('width') else 400
       height = int(request.args.get('height')) if request.args.get('height') else 400
       kekulize = bool(request.args.get('kekulize'))
-      #img = depict.Utils.Mol2Image(mol, width=width, height=height, kekulize=kekulize, wedgeBonds=True)
       img = rdkit.Chem.Draw.MolToImage(mol, size=(width, height), kekulize=kekulize, wedgeBonds=True, fitImage=True) # PIL.Image.Image
       img_bytearray = io.BytesIO()
       img.save(img_bytearray, format='PNG')
-      tmpfile = f"{app.instance_path}/tmp.png"
-      fout = open(tmpfile, "wb+")
-      fout.write(img_bytearray.getvalue())
-      fout.close()
+      # File for debugging only.
+      # tmpfile = f"{app.instance_path}/tmp.png"
+      # fout = open(tmpfile, "wb+")
+      # fout.write(img_bytearray.getvalue())
+      # fout.close()
+      # logging.debug(f"SEE: {tmpfile}")
       imgdata_b64 = base64.b64encode(img_bytearray.getvalue()).decode("ascii")
-      logging.debug(f"SEE: {tmpfile}")
       logging.debug(f"len(imgdata_b64): {len(imgdata_b64)}")
-      #logging.debug(f"imgdata_b64: {imgdata_b64}")
       return render_template('image.html', result=imgdata_b64)
 
+    @app.route('/hello/') #practice
+    @app.route('/hello/<name>') #practice
+    def hello(name=None):
+      return render_template('hello.html', name=name)
 
     return app
