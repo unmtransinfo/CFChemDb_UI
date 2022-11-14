@@ -15,8 +15,8 @@ See also:
 ```
 $ conda create -n rdktools -c conda-forge rdkit ipykernel
 $ conda activate rdktools
-(rdktools) $ conda install -c conda-forge pyvis 
-(rdktools) $ conda install -c conda-forge networkx=2.5 
+(rdktools) $ conda install -c conda-forge pyvis
+(rdktools) $ conda install -c conda-forge networkx=2.5
 ```
 
 See also: [conda/environment.yml](conda/environment.yml) (Create with `conda env export >environment.yml`.)
@@ -29,3 +29,8 @@ Test app:
 (cd flask; ./Go.sh)
 ```
 
+## Under construction shapshots
+
+ * <img border="1" width="500" src="doc/images/screenshot_01.png">
+
+ * <img border="1" width="500" src="doc/images/screenshot_02.png">
