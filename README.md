@@ -17,6 +17,16 @@ $ conda create -n rdktools -c conda-forge rdkit ipykernel
 $ conda activate rdktools
 (rdktools) $ conda install -c conda-forge pyvis
 (rdktools) $ conda install -c conda-forge networkx=2.5
+(rdktools) $ conda install -c conda-forge psycopg2
+(rdktools) $ pip install pylatex
+(rdktools) $ pip install flask --upgrade
+(rdktools) $ pip install rdktools --upgrade
+```
+
+Alternately, create the `rdktools` environment with:
+
+```
+conda create -f conda/environment.yml
 ```
 
 See also: [conda/environment.yml](conda/environment.yml) (Create with `conda env export >environment.yml`.)
